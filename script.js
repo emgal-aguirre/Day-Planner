@@ -1,16 +1,54 @@
-// var NowDate = new Date();
-// var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-// var sDay = NowDate.getDate();
-// var sMonth = NowDate.getMonth() + 1;
-// var sYear = NowDate.getFullYear();
-// var eDisplayDate = document.getElementById('displayJsDate');
-// eDisplayDate = sMonth + '/' + sDay + '/' + sYear;
+//global variables 
+var times = JSON.parse(localStorage.getItem("times"));
+console.log(times)
 
-// var NowMoment = moment();
-// var eCurrentDay = document.getElementById('currentDay');
-// eCurrentDay.innerHTML = NowMoment.format('MM-DD-YYYY');
-
+// Displays date in real time
 function displayDate() {
     $("#currentDay").html(moment().format("LLLL"));
 } setInterval(displayDate, 1000);
 displayDate();
+
+// var value for hour = interger value 
+var currentHour = parseInt(moment().format('hh'));
+console.log(currentHour);
+
+// function to change color by time 
+$(".time-block").each(function () {
+    var calendarHour = parseInt($(this).attr("data-hour"));
+    console.log($(this).attr("data-hour"));
+
+
+    if (calendarHour == currentHour) {
+        $(this).addClass("present");
+        $(this).removeClass("future");
+        $(this).removeClass("past");
+    } else if (calendarHour > currentHour) {
+        $(this).addClass("future");
+        $(this).removeClass("present");
+        $(this).removeClass("past");
+    } else {
+        $(this).addClass("past");
+        $(this).removeClass("future");
+        $(this).removeClass("present");
+    }
+});
+
+$(".saveBtn").on("click", function (event) {
+    event.preventDefault();
+    var taskDiscription = $(this).siblings("input")
+    var storeTime = $(this).siblings("div")
+    console.log(taskDiscription.val())
+    console.log(storeTime.text())
+    if (!times) {
+        times = [];
+    }
+    times.push({
+        "time": storeTime.text(),
+        "taskDiscription": taskDiscription.val()
+    })
+    localStorage.setItem("times", JSON.stringify(times)
+    )
+})
+
+
+

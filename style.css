@@ -80,7 +80,7 @@ table {
     font-weight: normal;
   }
   
-  }
+
   
 
   th,
@@ -109,5 +109,19 @@ table {
       display: block;
       width: 100%;
   }
+
+
+.past {
+  background-color: lightslategray;
+  color: black
 }
 
+.present {
+  background-color: greenyellow;
+  color:black
+}
+
+.future {
+  background-color: cadetblue;
+  color: black;
+}
