@@ -9,7 +9,7 @@ function displayDate() {
 displayDate();
 
 // var value for hour = interger value 
-var currentHour = parseInt(moment().format('hh'));
+var currentHour = parseInt(moment().format('HH'));
 console.log(currentHour);
 
 // function to change color by time 
@@ -49,6 +49,3 @@ $(".saveBtn").on("click", function (event) {
     localStorage.setItem("times", JSON.stringify(times)
     )
 })
-
-
-
